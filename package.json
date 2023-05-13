@@ -1,0 +1,26 @@
+{
+  "name": "translationSrt",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec 'node index.js --input=../../学习资源/learn-trpc-nextjs-prisma --from=en --to=zh' --signal SIGINT"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "minimist": "^1.2.8",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.1.1",
+    "kolorist": "^1.8.0",
+    "lodash-es": "^4.17.21",
+    "request-promise": "^4.2.6",
+    "srt-parser-2": "^1.2.2",
+    "uuid": "^9.0.0"
+  }
+}
