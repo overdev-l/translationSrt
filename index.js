@@ -114,7 +114,9 @@ async function main(point = 0) {
     console.log(lightMagenta(`⚡️ Start translating ${srt[point]}, total ${srt.length} files`))
     const srtData = await translator(srt[point])
     console.log(lightGreen(`👀 Translation Done!, The remaining ${ srt.length - point } file`))
-    saveFile(srtData, srt[point])
+    await saveFile(srtData, srt[point])
+    point++
+    await main(point)
 }
 
 
