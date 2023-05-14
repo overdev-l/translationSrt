@@ -4,7 +4,7 @@ import minimist from 'minimist'
 import Parser from 'srt-parser-2'
 import { v4 } from "uuid"
 import { cloneDeep } from 'lodash-es'
-import { bgGreen, lightCyan, } from 'kolorist'
+import { lightCyan, lightMagenta, lightGreen} from 'kolorist'
 
 import { MD5 } from "./utils.js"
 
@@ -20,7 +20,8 @@ const parserInstance = new Parser.default()
 const APPID = args.APPid
 const APPSecret = args.APPSecret
 const srt = []
-
+console.log(APPID)
+console.log(APPSecret)
 
 function init() {
     const rootPath = path.resolve(__dirname, args.input)
@@ -59,9 +60,9 @@ async function translator(p) {
         if (!newData[pointer]?.text) return
         const query = newData?.at(pointer)?.text
         console.log(`
-        ${bgGreen('📃-file: ')}${lightCyan(path.basename(p))}
-        ${bgGreen('👌-row: ')}${lightCyan(pointer + 1)}
-        ${bgGreen('🦟-query: ')}${lightCyan(query)}`
+        ${lightCyan('📃-file: ')}${lightCyan(path.basename(p))}
+        ${lightCyan('👌-row: ')}${lightCyan(pointer + 1)}
+        ${lightCyan('🦟-query: ')}${lightCyan(query)}`
         )
         const result = await translate(query)
         if (result.error_code) {
@@ -111,7 +112,7 @@ function saveFile(content, sourceFile) {
 
 async function main(point = 0) {
     if (!srt[point]) return
-    console.log(lightMagenta(`⚡️ Start translating ${srt[point]}, total ${srt.length} files`))
+    console.log(lightMagenta(`⚡️ Start translating ${path.basename(srt[point])}, total ${srt.length} files`))
     const srtData = await translator(srt[point])
     console.log(lightGreen(`👀 Translation Done!, The remaining ${ srt.length - point } file`))
     await saveFile(srtData, srt[point])
